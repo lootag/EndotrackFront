@@ -1,0 +1,15 @@
+.mat-cell,
+.mat-header-cell{
+    word-wrap: initial;
+    display: table-cell;
+    padding: 0px 10px;
+    line-break: unset;
+    width: 20%;
+    white-space: nowrap;
+    overflow: hidden;
+    vertical-align: left;
+}
+.mat-row,
+.mat-header-row{
+    display: table-row;
+}
