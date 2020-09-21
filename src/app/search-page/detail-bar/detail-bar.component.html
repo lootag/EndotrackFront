@@ -1,20 +1,34 @@
-<ng-sidebar-container style="height: 100%; width: 15%; position: absolute; right: 0px;">
+<ng-sidebar-container style="height: 77%; width: 50%; position: absolute; right: 0px;">
      <ng-sidebar 
     [(opened)]="open"
-    [(position)] = "position">
-      <h4 style="color: darkcyan;">Customer</h4>
-      <p>UMC-Utrecht</p>
-      <h4 style="color: darkcyan;">Serial Number</h4>
-      <p>123456789</p>
-      <h4 style="color: darkcyan;">Water Temperature</h4>
-      <p>23</p>
-      <h4 style="color: darkcyan;">Water Level (ml)</h4>
-      <p>300</p>
-      <h4 style="color: darkcyan;">Pump 10</h4>
-      <p>On</p>
-      <h4 style="color: darkcyan;">Pump 5</h4>
-      <p>Off</p>
-      <h4 style="color: darkcyan;">Drain Sensor</h4>
-      <p>On</p>
+    [(position)] = "position"
+    [(showBackdrop)] ="showBackDrop"
+    >
+      <div style="padding-top: 30%;">
+        <h6 style="color: darkcyan;"><fa-icon [icon] = "faHospital"></fa-icon>Customer</h6>
+        <p *ngIf ="isLoading | async">Loading...</p>
+        <p *ngIf="!(isLoading | async)">{{process.machine.customer.name}}</p>
+        <h6 style="color: darkcyan;"><fa-icon [icon] = "faBarCode"></fa-icon>Serial Number</h6>
+        <p *ngIf ="isLoading | async">Loading...</p>
+        <p *ngIf="!(isLoading | async)">{{process.machine.serialNumber}}</p>
+        <h6 style="color: darkcyan;"><fa-icon [icon] = "faLightBulb"></fa-icon>Process Type</h6>
+        <p *ngIf ="isLoading | async">Loading...</p>
+        <p *ngIf="!(isLoading | async)">{{process.processType}}</p>
+        <h6 style="color: darkcyan;"><fa-icon [icon] = "faThermometer"></fa-icon>Water Temperature</h6>
+        <p *ngIf ="isLoading | async">Loading...</p>
+        <p *ngIf="!(isLoading | async)">{{process.waterTemp}}</p>
+        <h6 style="color: darkcyan;"><fa-icon [icon] = "faWater"></fa-icon>Water Level (ml)</h6>
+        <p *ngIf ="isLoading | async">Loading...</p>
+        <p *ngIf="!(isLoading | async)">{{process.waterLevelMl}}</p>
+        <h6 style="color: darkcyan;"><fa-icon [icon] = "faMicrochip"></fa-icon>Pump 10</h6>
+        <p *ngIf ="isLoading | async">Loading...</p>
+        <p *ngIf="!(isLoading | async)">{{process.pump10}}</p>
+        <h6 style="color: darkcyan;"><fa-icon [icon] = "faMicrochip"></fa-icon>Pump 5</h6>
+        <p *ngIf ="isLoading | async">Loading...</p>
+        <p *ngIf="!(isLoading | async)">{{process.pump5}}</p>
+        <h6 style="color: darkcyan;"><fa-icon [icon] = "faMicrochip"></fa-icon>Drain Sensor</h6>
+        <p *ngIf ="isLoading | async">Loading...</p>
+        <p *ngIf="!(isLoading | async)">{{process.drainSensor}}</p>
+      </div>
     </ng-sidebar>   
 </ng-sidebar-container>

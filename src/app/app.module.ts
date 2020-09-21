@@ -13,6 +13,12 @@ import { MatTableModule } from '@angular/material/table';
 import { NavBarComponent } from './shared/nav-bar/nav-bar.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { Ng5SliderModule } from 'ng5-slider';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HttpClientModule } from '@angular/common/http';
+import { SearchModalComponent } from './search-page/search-modal/search-modal.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,6 +26,7 @@ import { Ng5SliderModule } from 'ng5-slider';
     DetailBarComponent,
     GridComponent,
     NavBarComponent,
+    SearchModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,7 +37,12 @@ import { Ng5SliderModule } from 'ng5-slider';
     MatPaginatorModule,
     MatTableModule,
     NgMultiSelectDropDownModule.forRoot(),
-    Ng5SliderModule
+    Ng5SliderModule,
+    FontAwesomeModule,
+    HttpClientModule,
+    NgbModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

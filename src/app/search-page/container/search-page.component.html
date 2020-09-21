@@ -1,65 +1,30 @@
 <body>
-    <app-detail-bar 
-    [open] = "open"
-    [position] = "position">
-    </app-detail-bar>
-    <div class="container" style="position: absolute; left: 0px; width: 40%; padding-bottom: 20%;">
-        <div class="row">
-            <div class="col-md-12">
-                <form>
-                    <div>
-                        <label for="itemSelect" style="padding-top: 10px;">Customer Name</label>
-                        <ng-multiselect-dropdown
-                        [placeholder] = "'Select an item from the list down below'"
-                        [settings] = "dropdownSettings"
-                        [data] = "customers"
-                        [disabled] = "false"
-                        >
-                        </ng-multiselect-dropdown>
-                    </div>
-                    <div>
-                        <label for="itemSelect" style="padding-top: 10px;">Machine Serial Number</label>
-                        <ng-multiselect-dropdown
-                        [placeholder] = "'Select an item from the list down below'"
-                        [settings] = "dropdownSettings"
-                        [data] = "serialNumbers"
-                        [disabled] = "false"
-                        >
-                        </ng-multiselect-dropdown>
-                    </div>
-                    <div style="padding-top: 3%;">
-                        <div class="custom-control custom-switch">
-                            <input type="checkbox" class="custom-control-input" id="customSwitch1" checked="">
-                            <label class="custom-control-label" for="customSwitch1">Pump 10</label>
-                        </div>
-                        <div class="custom-control custom-switch">
-                            <input type="checkbox" class="custom-control-input" id="customSwitch2" checked="">
-                            <label class="custom-control-label" for="customSwitch2">Pump 5</label>
-                        </div>
-                        <div class="custom-control custom-switch">
-                            <input type="checkbox" class="custom-control-input" id="customSwitch3" checked="">
-                            <label class="custom-control-label" for="customSwitch3">Drain Sensor</label>
-                        </div>
-                    </div>
-                    <div>
-                        <label for="itemSelect" style="padding-top: 10px;">Water Temperature</label>
-                        <ng5-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ng5-slider>
-                    </div>
-                    <div>
-                        <label for="itemSelect" style="padding-top: 10px;">Water Level (ml)</label>
-                        <ng5-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ng5-slider>
-                    </div>
-                    <div style="padding-top: 4%;">
-                    <button type="button" class="btn btn-outline-primary">Search</button>
-                    </div>
-                </form>
+    <form>
+        <app-detail-bar 
+        [open] = "detailsOpen"
+        [position] = "detailsPosition"
+        [process] = "processRetrieved"
+        [isLoading] = "isLoadingProcess">
+        </app-detail-bar>
+        <app-search-modal 
+        [open] = "filtersOpen"
+        [position] = "filtersPosition"
+        (filtersEmitter) = "onFiltersEmit($event)"
+        (cancelEmitter) = "onCancelFilters()">
+        </app-search-modal>
+        <div *ngIf="isLoadingProcessInfos | async">
+            <p>Loading...</p>
+        </div>
+        <div *ngIf="!(isLoadingProcessInfos | async) && !filtersOpen">
+            <app-grid (showDetailsEmitter) = "toggleDetails($event)"
+                [dataSource] = "gridDataSource"
+            ></app-grid>
+            <div style="padding-top: 5%;">
+                <button style="position: absolute; left: 0px"type="button" class="btn btn-outline-primary" (click) = "toggleFilters()">Apply Filters</button>
+                <button style="position: absolute; left: 25%"type="button" class="btn btn-outline-primary" (click) = "removeFilters()">Remove Filters</button>
             </div>
         </div>
-    </div>
-        <div style="padding-top: 40%;">
-        <app-grid (showDetailsEmitter) = "toggleSideBar($event)"></app-grid>
-    </div>
-    
+    </form>
 </body>
 
 

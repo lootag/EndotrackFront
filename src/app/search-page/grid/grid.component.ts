@@ -1,6 +1,7 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { EventEmitter } from '@angular/core';
+import { processInfo } from '../models/processInfo.model';
 
 @Component({
   selector: 'app-grid',
@@ -8,24 +9,23 @@ import { EventEmitter } from '@angular/core';
   styleUrls: ['./grid.component.scss']
 })
 export class GridComponent implements OnInit {
-  @Output() showDetailsEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() showDetailsEmitter: EventEmitter<any> = new EventEmitter<any>();
   constructor() { }
 
-  data = [
-    {"process_id": 1, "start": "01/01/2020", "end":"02/01/2020" }
-  ]
-  dataSource = new MatTableDataSource<any>();
-  displayColumns: Array<string> = ["process_id", "start", "end", "details"];
+  @Input() dataSource = new MatTableDataSource<processInfo>();
+  displayColumns: Array<string> = ["id", "processTimeStart", "processTimeEnd", "details"];
   showDetails: string = "Show Details";
   detailsOn: boolean = false;
+  selectedItem: number = 0;
 
   ngOnInit(): void {
-    this.dataSource.data = this.data;
+  
   }
 
-  onButtonClick(): void{
+  onButtonClick(index: number): void{
     this.detailsOn = !this.detailsOn;
-    this.showDetailsEmitter.emit(this.detailsOn);
+    this.selectedItem = index;
+    this.showDetailsEmitter.emit({"sideBarPosition" : this.detailsOn, "id": this.dataSource.data[index].id});
   }
 
 }
