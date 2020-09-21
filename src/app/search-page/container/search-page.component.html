@@ -13,7 +13,7 @@
         (cancelEmitter) = "onCancelFilters()">
         </app-search-modal>
         <div *ngIf="isLoadingProcessInfos | async">
-            <p>Loading...</p>
+            <mat-progress-spinner style="position: absolute; left: 50%; bottom: 50%;"mode="indeterminate"></mat-progress-spinner>
         </div>
         <div *ngIf="!(isLoadingProcessInfos | async) && !filtersOpen">
             <app-grid (showDetailsEmitter) = "toggleDetails($event)"

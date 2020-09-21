@@ -62,6 +62,10 @@ export class SearchModalComponent implements OnInit{
     floor: 0,
     ceil: 100
   }
+
+  pump10Enabled: boolean = true;
+  pump5Enabled: boolean = true;
+  drainSensorEnabled: boolean = true;
   processQueryForm: FormGroup;
 
   ngOnInit(): void {
@@ -112,6 +116,7 @@ export class SearchModalComponent implements OnInit{
     return this.processQueryForm.get('customerName');
   }
 
+
   getAllCustomers() {
     this.isLoadingCustomers.next(true);
     console.log("waiting for customers to be loaded...")
@@ -143,9 +148,7 @@ export class SearchModalComponent implements OnInit{
     )
   }
 
-  getProcess(){
-  
-  }
+ 
 
 
 
@@ -165,6 +168,18 @@ export class SearchModalComponent implements OnInit{
   onButtonClick(): void{
     console.log(this.customerNameForm.value);
     console.log(this.serialNumberForm.value);
+    let pump10: boolean = null;
+    let pump5: boolean = null;
+    let drainSensor: boolean = null;
+    if(this.pump10Enabled){
+      pump10 = this.pump10.value;
+    }
+    if(this.pump10Enabled){
+      pump5 = this.pump5.value;
+    }
+    if(this.pump10Enabled){
+      drainSensor = this.drainSensor.value;
+    }
     let customerIds: number[] = this.customers.filter(customer => this.customerNameForm.value.includes(customer.name))
                                               .map(customer => customer.id);
 
@@ -172,9 +187,9 @@ export class SearchModalComponent implements OnInit{
                                                 .map(machine => machine.id);
     let processQuery: ProcessQuery = new ProcessQuery(this.waterTempRange.value[0],
                                                       this.waterTempRange.value[1],
-                                                      this.pump10.value,
-                                                      this.pump5.value,
-                                                      this.drainSensor.value,
+                                                      pump10,
+                                                      pump5,
+                                                      drainSensor,
                                                       this.waterLevelRange.value[0],
                                                       this.waterLevelRange.value[1],
                                                       machineIds,

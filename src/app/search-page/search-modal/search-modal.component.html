@@ -36,17 +36,26 @@
                 </ng-multiselect-dropdown>
             </div>
             <div style="padding-top: 3%;">
+                <label class="custom-control-label" for="customSwitch2">Pump 10 (uncheck to disable filter)</label>
+                <input type="checkbox" style="position: absolute; right: 20%;" [checked] = "pump10Enabled" (change) = "pump10Enabled = !pump10Enabled">
                 <div class="custom-control custom-switch">
-                    <input type="checkbox" class="custom-control-input" id="customSwitch1" checked="" formControlName = "pump10">
-                    <label class="custom-control-label" for="customSwitch1">Pump 10</label>
+                    <input *ngIf="pump10Enabled" type="checkbox" class="custom-control-input" id="customSwitch1" checked="" formControlName = "pump10">
+                    <input *ngIf="!pump10Enabled" disabled type="checkbox" class="custom-control-input" id="customSwitch1" checked="" formControlName = "pump10">
+                    <label class="custom-control-label" for="customSwitch1"></label>
                 </div>
+                <label class="custom-control-label" for="customSwitch2">Pump 5 (uncheck to diable filter)</label>
+                <input type="checkbox" style="position: absolute; right: 20%;" [checked] = "pump5Enabled" (change) = "pump5Enabled = !pump5Enabled">
                 <div class="custom-control custom-switch">
-                    <input type="checkbox" class="custom-control-input" id="customSwitch2" checked="" formControlName = "pump5">
-                    <label class="custom-control-label" for="customSwitch2">Pump 5</label>
+                    <input *ngIf="pump5Enabled" type="checkbox" class="custom-control-input" id="customSwitch2" checked="" formControlName = "pump5">
+                    <input *ngIf="!pump5Enabled" disabled type="checkbox" class="custom-control-input" id="customSwitch2" checked="" formControlName = "pump5">
+                    <label class="custom-control-label" for="customSwitch2"></label>
                 </div>
+                <label class="custom-control-label">Drain Sensor (uncheck to disable filter)</label>
+                <input type="checkbox" style="position: absolute; right: 20%;" [checked] = "drainSensorEnabled" (change) = "drainSensorEnabled = !drainSensorEnabled">
                 <div class="custom-control custom-switch">
-                    <input type="checkbox" class="custom-control-input" id="customSwitch3" checked="" formControlName = "drainSensor">
-                    <label class="custom-control-label" for="customSwitch3">Drain Sensor</label>
+                    <input *ngIf="drainSensorEnabled" type="checkbox" class="custom-control-input" id="customSwitch3" checked="" formControlName = "drainSensor">
+                    <input *ngIf="!drainSensorEnabled" disabled type="checkbox" class="custom-control-input" id="customSwitch3" checked="" formControlName = "drainSensor">
+                    <label class="custom-control-label" for="customSwitch3"></label>
                 </div>
             </div>
             <div>
