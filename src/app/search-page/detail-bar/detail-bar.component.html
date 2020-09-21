@@ -4,7 +4,7 @@
     [(position)] = "position"
     [(showBackdrop)] ="showBackDrop"
     >
-      <div style="padding-top: 30%;">
+      <div>
         <h6 style="color: darkcyan;"><fa-icon [icon] = "faHospital"></fa-icon>Customer</h6>
         <p *ngIf ="isLoading | async">Loading...</p>
         <p *ngIf="!(isLoading | async)">{{process.machine.customer.name}}</p>

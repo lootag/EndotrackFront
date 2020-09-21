@@ -16,9 +16,14 @@
             <mat-progress-spinner style="position: absolute; left: 50%; bottom: 50%;"mode="indeterminate"></mat-progress-spinner>
         </div>
         <div *ngIf="!(isLoadingProcessInfos | async) && !filtersOpen">
-            <app-grid (showDetailsEmitter) = "toggleDetails($event)"
+            <div *ngIf="gridDataSource.data.length == 0">
+                <p>There are no records corresponding to the criteria you've specified.</p>
+            </div>
+            <div *ngIf="gridDataSource.data.length > 0">
+                <app-grid (showDetailsEmitter) = "toggleDetails($event)"
                 [dataSource] = "gridDataSource"
-            ></app-grid>
+                ></app-grid>
+            </div>
             <div style="padding-top: 5%;">
                 <button style="position: absolute; left: 0px"type="button" class="btn btn-outline-primary" (click) = "toggleFilters()">Apply Filters</button>
                 <button style="position: absolute; left: 25%"type="button" class="btn btn-outline-primary" (click) = "removeFilters()">Remove Filters</button>
